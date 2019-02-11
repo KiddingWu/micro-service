@@ -1,0 +1,43 @@
+#版本
+version: '3'
+
+services:
+  message-service:
+    image: message-service:latest
+
+  user-service:
+    image: user-service:latest
+    command:
+    - "--mysql.address=172.16.0.53"
+
+  user-edge-service:
+    image: user-edge-service:latest
+    links:
+      - user-service
+      - message-service
+    command:
+      - "--redis.address=172.16.0.53"
+
+  course-service:
+      image: course-service:latest
+      links:
+        - user-service
+      command:
+        - "--mysql.address=172.16.0.53"
+        - "--zookeeper.address=172.16.0.53"
+
+  course-edge-service:
+      image: course-edge-service:latest
+      links:
+        - user-edge-service
+      command:
+        - "--zookeeper.address=172.16.0.53"
+
+  api-gateway-zuul:
+      image: api-gateway-zuul:latest
+      links:
+        - user-edge-service
+        - course-edge-service
+      ports:
+        - 8080:8080
+

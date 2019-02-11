@@ -1,0 +1,18 @@
+server:
+  name: user-edge-service
+  port: 8082
+
+thrift:
+  user:
+    ip: user-service # 这里ip地址，而不是 user-thrift-service 定义的 service.name
+    port: 7911
+
+  message:
+    ip: message-service
+    port: 9090
+
+#redis config
+spring:
+  redis:
+    host: ${redis.address}
+    port: 6379

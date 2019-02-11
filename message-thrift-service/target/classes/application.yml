@@ -1,0 +1,12 @@
+service:
+  name: message-thrift-service
+  port: 9090
+
+spring:
+  mail:
+    host: smtp.163.com
+    username: jemywu@163.com
+    password: wjm570
+    port: 25
+    protocol: smtp
+    default-encoding: utf-8

@@ -1,0 +1,11 @@
+server:
+  port: 8081
+
+#dubbo config
+spring:
+  dubbo:
+    application:
+      name: course-service
+    registry:
+      address: zookeeper://${zookeeper.address}:2181
+    scan: n.kidding.course
