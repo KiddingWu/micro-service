@@ -2,4 +2,6 @@
 
 mvn package
 
-docker build -t course-service:latest .
+docker build -t hub.kidding.com:8090/micro-service/course-service:latest .
+
+docker push hub.kidding.com:8090/micro-service/course-service:latest
